@@ -31,22 +31,24 @@ BEGIN
     END_FOR 
     RETURN ps ; 
 END
-ALGORITHM orthogonal vectors
+ALGORITHM orthogonal vectors    
 VAR
-    V1,V2,..,Vn : ARRAY_OF FLOAT[] ; 
-    i , j ,k , n  : INTEGER ;
+    V1,V2 : ARRAY_OF FLOAT[] ; 
+    i , n  : INTEGER ;
+    Ps : FLOAT ;
 BEGIN
-FOR i FROM 1 TO n  DO
-    FOR j FROM 0 TO lengthVi-1  DO
-        Read (Vi[j]);
+    REPEAT
+        write ("enter the number of vectors");
+        read (n);
+    UNTIL ( (n >= 2) AND (n mod 2 =0))
+    FOR i FROM 0 TO n STEP 1  DO
+        read (V1);
+        read (V2);
     END_FOR
-    FOR k FROM 2 TO n  DO
-        IF (dot_product(Vi,Vk)=0) Then Write("Les deux vecteurs sont orthogonaux")
-        ELSE Write("Les deux vecteurs ne sont pas orthogonaux");
-    END_FOR
-    
-    END_IF
-END_FOR
-    
+        Ps := dot_product (V1,V2);
+    IF (Ps=0) THEN
+        write ("the vectors are orthogonal");
+    ELSE
+        write ("the vectors are not orthogonal");
 END
 
